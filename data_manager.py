@@ -66,9 +66,16 @@ def get_random_result(finished_num=0):
     if qid is None or finished_num >= total:
         info = None
     else:
+        candidates_set = set()
+        pure_candidates = []
+        for c in candidates:
+            if c not in candidates_set:
+                pure_candidates.append(c)
+                candidates_set.add(c)
+
         info = {
             'question': question,
-            'answers': list(set(candidates)),
+            'answers': pure_candidates,
             'answer_id': qid,
             'model': model,
             'total': total,
