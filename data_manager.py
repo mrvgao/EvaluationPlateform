@@ -98,6 +98,7 @@ def mark_result(qid, mark):
     result_src = result_src + '.test' if test_mode else result_src
 
     result.to_csv(result_src, index=False)
-    indices.remove(qid)
+    if qid in indices:
+        indices.remove(qid)
 
     print('set result')
