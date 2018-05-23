@@ -68,7 +68,7 @@ def get_random_result(finished_num=0):
     else:
         info = {
             'question': question,
-            'answers': candidates,
+            'answers': list(set(candidates)),
             'answer_id': qid,
             'model': model,
             'total': total,
