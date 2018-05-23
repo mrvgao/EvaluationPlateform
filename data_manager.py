@@ -1,7 +1,12 @@
 import random
 import pandas as pd
 
-result_src = 'data/result_90.csv'
+MARK = '2018-05-23-02'
+
+result_pre = 'data/result_100'
+result_src = '{}.csv'.format(result_pre)
+output_src = '{}-{}.csv'.format(result_src, MARK)
+result_test = '{}-test.csv'.format(result_pre)
 
 RIGHT = 'right'
 WRONG = 'wrong'
@@ -9,7 +14,7 @@ UNSURE = 'unsure'
 
 marked_indices = set()
 
-result = pd.read_csv('data/result_90.csv')
+result = pd.read_csv(result_src)
 
 test_mode = False
 
@@ -95,9 +100,9 @@ def mark_result(qid, mark):
 
     result['right'][qid] = mark
 
-    result_src = result_src + '.test' if test_mode else result_src
+    output = result_test if test_mode else output_src
 
-    result.to_csv(result_src, index=False)
+    result.to_csv(output, index=False)
     if qid in indices:
         indices.remove(qid)
 
