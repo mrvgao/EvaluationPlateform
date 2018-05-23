@@ -1,7 +1,7 @@
 import random
 import pandas as pd
 
-MARK = '2018-05-23-02'
+MARK = '2018-05-23-03-tst-all-question'
 
 result_pre = 'data/result_100'
 result_src = '{}.csv'.format(result_pre)
