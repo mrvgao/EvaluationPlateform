@@ -1,6 +1,6 @@
 from bottle import get, post, template, run, request, response
 from data_manager import get_random_result, mark_result
-from data_manager import WRONG, RIGHT
+from data_manager import WRONG, RIGHT, UNSURE
 
 
 INDEX = 'templates/index.html'
@@ -22,12 +22,9 @@ def get_page():
 def post_result():
     answer_id = request.forms.get('answer_id', type=int)
     current = request.forms.get('current', type=int)
-    if request.forms.get('choose') == RIGHT:
-        mark_result(answer_id, right=True)
-        print('right')
-    elif request.forms.get('choose') == WRONG:
-        mark_result(answer_id, right=False)
-        print('wrong')
+    choose = request.forms.get('choose')
+    mark_result(answer_id, choose)
+    print(choose)
 
     info = get_random_result(finished_num=current)
 

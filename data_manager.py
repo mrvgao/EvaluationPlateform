@@ -5,6 +5,7 @@ result_src = 'data/result_90.csv'
 
 RIGHT = 'right'
 WRONG = 'wrong'
+UNSURE = 'unsure'
 
 marked_indices = set()
 
@@ -87,10 +88,12 @@ def get_random_result(finished_num=0):
     return info
 
 
-def mark_result(qid, right):
+def mark_result(qid, mark):
     global result_src
 
-    result['right'][qid] = int(right)
+    assert mark in (RIGHT, WRONG, UNSURE)
+
+    result['right'][qid] = mark
 
     result_src = result_src + '.test' if test_mode else result_src
 
