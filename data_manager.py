@@ -1,9 +1,9 @@
 import random
 import pandas as pd
 
-MARK = '2018-05-23-03-tst-all-question'
+MARK = '2018-05-23-03-tst-keywords'
 
-result_pre = 'data/result_100'
+result_pre = 'data/dadada_quan_addwith_keyword.csv'
 result_src = '{}.csv'.format(result_pre)
 output_src = '{}-{}.csv'.format(result_src, MARK)
 result_test = '{}-test.csv'.format(result_pre)
