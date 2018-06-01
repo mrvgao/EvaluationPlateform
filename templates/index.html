@@ -1,34 +1,51 @@
 <html>
 <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<title>结果评测</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <title>结果评测</title>
 
 </head>
 <body>
 <div class="col-md-6 col-md-offset-3">
 
-    <h4>当前打标: {{current}}/{{total}}</h4>
-    <h1>输入问题: {{question}}</h1>
-    <h3>模型匹配问题:</h3>
-    <form method="post" action="/collect">
-        <input type="hidden" name='answer_id', value="{{answer_id}}"/>
-        <input type="hidden" name='current', value="{{current}}"/>
-        <button type='submit' name='choose' value="right" class='btn btn-success' id='right'>正确</button>
-        <button type='submit' name='choose' value="wrong" class='btn btn-danger' id='wrong'>错误</button>
-        <button type='submit' name='choose' value="unsure" class='btn btn-warning' id='unsure'>不确定</button>
-    </form>
-    <ul>
-        % for name in answers:
-        <li>{{name}}</li>
-        % end
-    </ul>
+    <div class="col-md-offset-2">
+        <h3>{{current}}/{{total}}: {{question}} </h3>
+    </div>
 
+    <form method="post" action="/collect">
+        <div class="col-md-6 col-md-offset-2">
+            <input type="hidden" name='answer_id', value="{{answer_id}}"/>
+            <input type="hidden" name='current', value="{{current}}"/>
+            <!--<ul>-->
+            % for index, value in enumerate(answers):
+            <div class="radio">
+                % if index == 0:
+                <input type="radio" id="{{index}}" name="right" value="{{index}}" checked>
+                % else:
+                <input type="radio" id="{{index}}" name="right" value="{{index}}">
+                % end
+                <label for="{{index}}">{{value}}</label>
+                <br>
+            </div>
+            % end
+            <!--</ul>-->
+            <div class="col-md-offset-0" style="
+                            height: 80px;
+                            width: 350px;
+                            margin-left: -6%;
+                            ">
+                <button type="submit" name="choose" value="right" class="btn btn-success" id="right">确认提交</button>
+                <button type="submit" name="choose" value="wrong" class="btn btn-danger" id="wrong">全不正确</button>
+                <button type="submit" name="choose" value="unsure" class="btn btn-warning" id="unsure">无法确定</button>
+                <button type="submit" name="choose" value="unsure" class="btn btn-info" id="ignore">忽略问题</button>
+            </div>
+        </div>
+    </form>
 </div>
 </body>
 </html>
