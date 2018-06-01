@@ -2,10 +2,10 @@ import random
 import pandas as pd
 
 TEST_MODE = False
-TOTAL = 50
-MARK = '2018-05-23-03-tst-keywords'
+TOTAL = 60
+MARK = '2018-06-01-zhongyuan-bank'
 
-result_pre = 'data/dadada_quan_addwith_keyword.csv'
+result_pre = 'data/zhongyuan_bank.csv'
 result_pre = result_pre.replace('.csv', '')
 
 result_src = '{}.csv'.format(result_pre)
